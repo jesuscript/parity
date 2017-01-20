@@ -86,9 +86,9 @@ linux-beta:
   stage: build
   image: ethcore/rust:beta
   only:
-    - beta
-    - tags
-    - stable
+    #- beta
+    #- tags
+    #- stable
     - triggers
   script:
     - cargo build -j $(nproc) --release $CARGOFLAGS
@@ -105,9 +105,9 @@ linux-nightly:
   stage: build
   image: ethcore/rust:nightly
   only:
-    - beta
-    - tags
-    - stable
+    #- beta
+    #- tags
+    #- stable
     - triggers
   script:
     - cargo build -j $(nproc) --release $CARGOFLAGS
@@ -155,9 +155,9 @@ linux-i686:
   stage: build
   image: ethcore/rust-i686:latest
   only:
-    - beta
-    - tags
-    - stable
+    #- beta
+    #- tags
+    #- stable
     - triggers
   script:
     - export HOST_CC=gcc
@@ -195,9 +195,9 @@ linux-armv7:
   stage: build
   image: ethcore/rust-armv7:latest
   only:
-    - beta
-    - tags
-    - stable
+    #- beta
+    #- tags
+    #- stable
     - triggers
   script:
     - export CC=arm-linux-gnueabihf-gcc
@@ -241,9 +241,9 @@ linux-arm:
   stage: build
   image: ethcore/rust-arm:latest
   only:
-    - beta
-    - tags
-    - stable
+    #- beta
+    #- tags
+    #- stable
     - triggers
   script:
     - export CC=arm-linux-gnueabihf-gcc
@@ -287,7 +287,7 @@ linux-armv6:
   stage: build
   image: ethcore/rust-armv6:latest
   only:
-    - beta
+    #- beta
 #    - tags
 #    - stable
 #    - triggers
@@ -326,9 +326,9 @@ linux-aarch64:
   stage: build
   image: ethcore/rust-aarch64:latest
   only:
-    - beta
-    - tags
-    - stable
+    #- beta
+    #- tags
+    #- stable
     - triggers
   script:
     - export CC=aarch64-linux-gnu-gcc
@@ -370,9 +370,9 @@ linux-aarch64:
 darwin:
   stage: build
   only:
-    - beta
-    - tags
-    - stable
+    #- beta
+    #- tags
+    #- stable
     - triggers
   script:
     - export COMMIT=$(git rev-parse HEAD)
@@ -408,9 +408,9 @@ windows:
     untracked: true
   stage: build
   only:
-    - beta
-    - tags
-    - stable
+    #- beta
+    #- tags
+    #- stable
     - triggers
   script:
     - set PLATFORM=x86_64-pc-windows-msvc
@@ -548,9 +548,9 @@ test-rust-nightly:
 js-release:
   stage: js-build
   only:
-    - master
-    - beta
-    - stable
+    #- master
+    #- beta
+    #- stable
   image: ethcore/rust:stable
   before_script:
     - export JS_FILES_MODIFIED=$(git --no-pager diff --name-only $CI_BUILD_REF^ $CI_BUILD_REF | grep ^js/ | wc -l)
@@ -564,7 +564,13 @@ js-release:
 push-release:
   stage: push-release
   only:
+<<<<<<< HEAD
     - tags
+=======
+    #- beta
+    #- tags
+    #- stable
+>>>>>>> ea334f991d97a454c4a578b69ab9ff829cb2f090
     - triggers
   image: ethcore/rust:stable
   script:
